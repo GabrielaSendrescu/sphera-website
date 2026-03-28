@@ -1,26 +1,241 @@
 <!DOCTYPE html>
-<html>
+<html lang="ro">
 <head>
-  <title>Sphera Projects</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      padding: 50px;
-      background: #0f172a;
-      color: white;
-    }
-    h1 {
-      font-size: 48px;
-    }
-    p {
-      font-size: 20px;
-      color: #cbd5f5;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sphera Projects</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+nav a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #f43f5e;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 90px;
+  letter-spacing: 8px;
+}
+
+.hero-content p {
+  font-size: 22px;
+  color: #cbd5f5;
+}
+
+/* SECTIONS */
+section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 140px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1.2s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* IMAGE STORY */
+.image-section {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.image-section img {
+  width: 50%;
+  border-radius: 20px;
+}
+
+.image-section .text {
+  width: 50%;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.03);
+  transition: 0.5s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  background: rgba(255,255,255,0.08);
+}
+
+/* TYPO */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 60px;
+  color: #94a3b8;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .image-section {
+    flex-direction: column;
+  }
+
+  .image-section img,
+  .image-section .text {
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 50px;
+  }
+}
+</style>
+
 </head>
+
 <body>
-  <h1>🚀 Sphera Projects</h1>
-  <p>Work in progress!!</p>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Projects</a>
+  <a href="#">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1>SPHERA</h1>
+    <p>Construim oportunități reale<br>Clădim comunități incluzive</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section>
+  <h2>O viziune construită cu sens</h2>
+  <p>
+    Educație, cultură și dezvoltare comunitară într-o formă autentică,
+    sustenabilă și profund umană.
+  </p>
+</section>
+
+<!-- IMAGE STORY -->
+<section class="image-section">
+  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+  <div class="text">
+    <h2>Educație</h2>
+    <p>Formare autentică și dezvoltare personală.</p>
+  </div>
+</section>
+
+<section class="image-section reverse">
+  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+  <div class="text">
+    <h2>Cultură</h2>
+    <p>Construim identitate și sens.</p>
+  </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section>
+  <h2>Direcțiile noastre</h2>
+  <div class="grid">
+    <div class="card">Cultură și patrimoniu</div>
+    <div class="card">Educație și formare</div>
+    <div class="card">Incluziune socială</div>
+    <div class="card">Cercetare</div>
+    <div class="card">Antreprenoriat social</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 SPHERA
+</footer>
+
+<script>
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(section => {
+    if (section.getBoundingClientRect().top < window.innerHeight - 100) {
+      section.classList.add("visible");
+    }
+  });
+});
+</script>
+
 </body>
 </html>
