@@ -3,239 +3,759 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sphera Projects</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
+<title>Asociația SPHERA — pentru Educație, Cultură și Dezvoltare Comunitară</title>
+<meta name="description" content="Asociația SPHERA pentru Educație, Cultură și Dezvoltare Comunitară. Construim. Conectăm. Creștem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #020617;
-  color: #e5e7eb;
+:root{
+  --olive:#8a8c5a;
+  --olive-deep:#73764a;
+  --olive-soft:#9a9c6e;
+  --ink:#1c1c1a;
+  --ink-soft:#262624;
+  --red:#e2231a;
+  --sand:#cfccc0;
+  --sand-light:#e8e6dd;
+  --paper:#f6f5f0;
+  --white:#ffffff;
+  --text:#2a2a26;
+  --muted:#6f6f66;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Jost',-apple-system,sans-serif;
+  --maxw:1180px;
 }
 
-/* NAV */
-nav {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 20px;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(12px);
-  z-index: 100;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--text);
+  background:var(--paper);
+  line-height:1.65;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
-nav a {
-  color: #e5e7eb;
-  text-decoration: none;
+/* ---------- HEADER / NAV ---------- */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(246,245,240,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(28,28,26,.08);
 }
-
-nav a:hover {
-  color: #f43f5e;
+.nav-wrap{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;gap:24px;
 }
-
-/* HERO */
-.hero {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
+.logo-img{height:46px;width:auto;display:block}
+.logo-foot{height:54px}
+@media(max-width:520px){.logo-img{height:38px}}
+.brand-mark{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#3a3a36,#0e0e0c);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex-shrink:0;
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
 }
-
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.brand-mark::after{
+  content:"";position:absolute;inset:6px;border-radius:50%;
+  background-image:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1.4px);
+  background-size:4px 4px;opacity:.5;
 }
+.brand-mark span{font-family:var(--display);font-style:italic;font-size:20px;color:#fff;font-weight:600;z-index:1;letter-spacing:.5px}
+.brand-txt{line-height:1.1}
+.brand-txt b{font-family:var(--display);font-size:22px;letter-spacing:5px;font-weight:600;color:var(--ink);display:block}
+.brand-txt small{font-size:8.5px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;display:block;margin-top:2px}
 
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
+nav ul{list-style:none;display:flex;gap:4px;align-items:center}
+nav a{
+  text-decoration:none;color:var(--ink);
+  font-size:13.5px;font-weight:400;letter-spacing:.3px;
+  padding:9px 14px;border-radius:2px;cursor:pointer;
+  transition:color .25s,background .25s;position:relative;
 }
-
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+nav a::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:4px;height:1.5px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s;
 }
+nav a:hover{color:var(--red)}
+nav a.active{color:var(--red)}
+nav a.active::after{transform:scaleX(1)}
 
-.hero-content h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 90px;
-  letter-spacing: 8px;
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
+
+/* ---------- PAGE SYSTEM ---------- */
+.page{display:none;animation:fade .6s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+section{padding:0}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* red square motif */
+.r-square{width:34px;height:34px;background:var(--red);display:inline-block}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:88vh;display:flex;align-items:center;
+  background:linear-gradient(115deg,var(--olive) 0%,var(--olive-deep) 60%,#5f6240 100%);
+  overflow:hidden;
 }
-
-.hero-content p {
-  font-size: 22px;
-  color: #cbd5f5;
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.6px);
+  background-size:22px 22px;opacity:.6;
 }
-
-/* SECTIONS */
-section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 140px 20px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: 1.2s ease;
+.hero-sphere{
+  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  width:560px;height:560px;max-width:50vw;
+  display:flex;align-items:center;justify-content:center;
+  filter:drop-shadow(0 26px 60px rgba(0,0,0,.4));
+  pointer-events:none;
 }
-
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+.hero-sphere img{width:100%;height:100%;object-fit:contain}
+.hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 28px;width:100%}
+.hero h1{
+  font-family:var(--display);color:#fff;font-weight:500;
+  font-size:clamp(48px,8vw,104px);line-height:.98;letter-spacing:1px;
+  text-shadow:0 4px 30px rgba(0,0,0,.25);
 }
-
-/* IMAGE STORY */
-.image-section {
-  display: flex;
-  align-items: center;
-  gap: 50px;
+.hero h1 span{display:block}
+.hero .tag{
+  display:inline-block;margin-bottom:26px;color:rgba(255,255,255,.85);
+  font-size:13px;letter-spacing:4px;text-transform:uppercase;font-weight:400;
+  border-left:3px solid var(--red);padding-left:14px;
 }
-
-.image-section img {
-  width: 50%;
-  border-radius: 20px;
+.hero .sub{
+  color:rgba(255,255,255,.92);font-size:clamp(15px,2vw,19px);
+  max-width:540px;margin-top:30px;font-weight:300;line-height:1.7;
 }
+.hero-cta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap}
 
-.image-section .text {
-  width: 50%;
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-block;text-decoration:none;cursor:pointer;
+  font-family:var(--body);font-size:13.5px;letter-spacing:1.5px;text-transform:uppercase;
+  font-weight:500;padding:15px 32px;border-radius:2px;border:1.5px solid transparent;
+  transition:all .3s;
 }
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#b81910;transform:translateY(-2px);box-shadow:0 10px 26px rgba(226,35,26,.35)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000;transform:translateY(-2px)}
 
-.reverse {
-  flex-direction: row-reverse;
+/* ---------- SECTION HEADINGS ---------- */
+.sec{padding:96px 0}
+.sec-olive{background:linear-gradient(160deg,var(--olive),var(--olive-deep));color:#fff}
+.sec-ink{background:var(--ink);color:#eceae2}
+.sec-sand{background:var(--sand-light)}
+.sec-paper{background:var(--paper)}
+
+.eyebrow{
+  font-size:12px;letter-spacing:4px;text-transform:uppercase;font-weight:500;
+  color:var(--red);margin-bottom:18px;display:flex;align-items:center;gap:12px;
 }
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
+.eyebrow::before{content:"";width:30px;height:2px;background:var(--red)}
+.h-big{
+  font-family:var(--display);font-weight:600;line-height:1.02;
+  font-size:clamp(38px,6vw,72px);letter-spacing:.5px;
 }
+.h-mid{font-family:var(--display);font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.1}
+.lead{font-size:clamp(16px,2vw,19px);font-weight:300;line-height:1.8;max-width:760px}
+p.body{font-size:16px;line-height:1.85;font-weight:300;margin-top:18px;max-width:760px}
+.red-text{color:var(--red)}
 
-.card {
-  padding: 30px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.03);
-  transition: 0.5s;
+/* ---------- ABOUT / STORY ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.split-txt p{margin-top:18px}
+
+.media-ph{
+  border-radius:4px;min-height:380px;display:flex;align-items:center;justify-content:center;
+  text-align:center;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  position:relative;overflow:hidden;padding:30px;font-weight:400;
 }
+.media-ph::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.3px);background-size:18px 18px}
+.ph-olive{background:linear-gradient(135deg,var(--olive),var(--olive-deep))}
+.ph-ink{background:linear-gradient(135deg,#2a2a26,#0e0e0c)}
+.ph-copper{background:linear-gradient(135deg,#c98a52,#6e4324)}
+.ph-sand{background:linear-gradient(135deg,#bdb9a8,#8f8b78);color:#2a2a26}
+.media-ph span{position:relative;z-index:1}
 
-.card:hover {
-  transform: translateY(-10px);
-  background: rgba(255,255,255,0.08);
+/* quote band */
+.quote-band{
+  background:var(--olive);color:#fff;text-align:center;padding:80px 28px;
+  position:relative;
 }
+.quote-band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px);background-size:20px 20px}
+.quote-band q{font-family:var(--display);font-style:italic;font-size:clamp(26px,4vw,42px);font-weight:500;line-height:1.25;position:relative;z-index:1;display:block;max-width:880px;margin:0 auto;quotes:"„" "”"}
+.quote-band cite{display:block;margin-top:22px;font-style:normal;font-size:14px;letter-spacing:2px;opacity:.85;position:relative;z-index:1}
 
-/* TYPO */
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
+/* ---------- PILLARS / DOMAINS ---------- */
+.pill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.15);margin-top:50px}
+.pill{background:var(--ink);padding:38px 30px;transition:background .3s}
+.pill:hover{background:#000}
+.pill .num{font-family:var(--display);font-size:30px;color:var(--red);font-weight:600;display:block;margin-bottom:8px}
+.pill h4{font-family:var(--body);font-size:16px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:#fff}
+
+/* values AURELIA */
+.aurelia{display:grid;grid-template-columns:auto 1fr;gap:50px;align-items:start;margin-top:20px}
+.aurelia-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.aurelia-list li{font-family:var(--body);font-size:clamp(18px,2.4vw,26px);letter-spacing:6px;font-weight:500;text-transform:uppercase;color:#eceae2}
+.aurelia-list li b{color:var(--red);font-weight:700;margin-right:2px}
+
+/* ---------- SOLUTIONS CARDS ---------- */
+.sol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:50px}
+.sol-card{
+  background:var(--white);border-radius:6px;padding:36px 34px;
+  border-top:4px solid var(--red);box-shadow:0 14px 40px rgba(0,0,0,.06);
+  transition:transform .3s,box-shadow .3s;
 }
+.sol-card:hover{transform:translateY(-6px);box-shadow:0 22px 56px rgba(0,0,0,.12)}
+.sol-card h3{font-family:var(--display);font-size:27px;font-weight:600;color:var(--ink);line-height:1.1}
+.sol-card .desc{font-size:15px;color:var(--muted);margin:14px 0 20px;line-height:1.7}
+.sol-card .lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:10px;display:block}
+.sol-card ul{list-style:none}
+.sol-card ul li{font-size:14.5px;padding:6px 0 6px 22px;position:relative;color:var(--text)}
+.sol-card ul li::before{content:"";position:absolute;left:0;top:14px;width:7px;height:7px;background:var(--olive);border-radius:50%}
+.sol-card.feat{grid-column:1/-1;border-top-color:var(--olive)}
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 60px;
-  color: #94a3b8;
+/* ---------- PROJECTS ---------- */
+.proj-fanion{
+  background:linear-gradient(150deg,var(--olive-deep),#5a5d3c);color:#fff;
+  border-radius:8px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;
+  margin-top:46px;
 }
+.proj-fanion .pf-txt{padding:48px 46px}
+.proj-fanion .badge{display:inline-block;background:var(--red);color:#fff;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;padding:6px 14px;border-radius:2px;margin-bottom:18px}
+.proj-fanion h3{font-family:var(--display);font-size:34px;font-weight:600;line-height:1.05}
+.proj-fanion .sub{opacity:.85;font-size:14px;letter-spacing:1px;margin-top:4px}
+.pf-list{list-style:none;margin:24px 0}
+.pf-list li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:15px}
+.pf-list li b{font-weight:600}
+.pf-list li small{opacity:.75;font-style:italic}
+.proj-fanion .obj{font-size:14px;opacity:.9;line-height:1.7;font-style:italic}
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .image-section {
-    flex-direction: column;
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px}
+.proj-card{background:var(--ink);color:#eceae2;border-radius:6px;padding:32px 28px;transition:transform .3s}
+.proj-card:hover{transform:translateY(-5px)}
+.proj-card .pc-mark{width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:18px}
+.proj-card .pc-logo{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--olive-soft);font-weight:600;margin-bottom:6px}
+.proj-card h4{font-family:var(--display);font-size:23px;font-weight:600;color:#fff;line-height:1.1}
+.proj-card p{font-size:14px;color:#b5b3a8;margin-top:12px;line-height:1.65}
+
+/* ---------- SUPPORT ---------- */
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.support-img{min-height:520px}
+.support-box{background:var(--ink);color:#eceae2;padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.support-box .big-pct{font-family:var(--display);font-size:64px;color:var(--red);font-weight:700;line-height:1}
+.support-box h3{font-family:var(--display);font-size:32px;font-weight:600;margin-bottom:6px;color:#fff}
+.divider-red{height:2px;background:var(--red);width:100%;margin:28px 0}
+.fld{margin:14px 0}
+.fld .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--olive-soft);font-weight:600;margin-bottom:3px}
+.fld .v{font-size:16px;color:#fff;font-weight:400;word-break:break-word}
+.support-box .note{font-size:14px;color:#b5b3a8;line-height:1.7;margin-top:24px}
+.support-box .thanks{font-family:var(--display);font-style:italic;font-size:24px;color:var(--red);margin-top:18px}
+
+/* ---------- CONTACT / FOUNDERS ---------- */
+.founder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:50px}
+.founder{background:var(--white);border-radius:6px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.07);transition:transform .3s}
+.founder:hover{transform:translateY(-6px)}
+.founder .ph{height:280px}
+.founder .f-body{padding:28px 26px}
+.founder h4{font-family:var(--display);font-size:24px;font-weight:600;color:var(--ink)}
+.founder .role{color:var(--red);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin:6px 0 4px}
+.founder .coord{font-size:14px;color:var(--muted);font-style:italic;margin-bottom:14px}
+.founder .exp{font-size:13.5px;color:var(--text);line-height:1.6;margin-bottom:16px}
+.founder .contact-line{font-size:13px;color:var(--ink);border-top:1px solid #eee;padding-top:12px}
+.founder .contact-line a{color:var(--ink);text-decoration:none}
+.founder .contact-line a:hover{color:var(--red)}
+
+.contact-foot{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.contact-foot .info-row{display:flex;gap:14px;align-items:flex-start;margin:16px 0}
+.contact-foot .info-row .ic{width:38px;height:38px;border-radius:50%;background:var(--olive);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.contact-foot .info-row a{color:var(--text);text-decoration:none}
+.contact-foot .info-row a:hover{color:var(--red)}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:#cfcdc4;padding:64px 0 30px}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:40px}
+.foot-brand{max-width:340px}
+.foot-brand .brand-txt b{color:#fff}
+.foot-brand p{font-size:14px;color:#9a988e;margin-top:18px;line-height:1.7}
+.foot-nav{display:flex;flex-direction:column;gap:10px}
+.foot-nav b{color:#fff;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.foot-nav a{color:#9a988e;text-decoration:none;font-size:14px;cursor:pointer;transition:color .25s}
+.foot-nav a:hover{color:var(--red)}
+.foot-tagline{font-family:var(--display);font-style:italic;font-size:22px;color:#fff;margin-top:8px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:46px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:#7d7b72}
+
+/* generic page hero (inner pages) */
+.page-hero{
+  background:linear-gradient(160deg,var(--olive),var(--olive-deep));
+  color:#fff;padding:90px 0 80px;position:relative;overflow:hidden;
+}
+.page-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1.3px,transparent 1.4px);background-size:20px 20px}
+.page-hero .container{position:relative;z-index:1}
+.page-hero h1{font-family:var(--display);font-size:clamp(40px,6vw,76px);font-weight:600;line-height:1;letter-spacing:.5px}
+.page-hero p{margin-top:18px;font-size:17px;max-width:620px;opacity:.92;font-weight:300}
+.page-hero.ink{background:var(--ink)}
+
+/* problem cards */
+.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:46px}
+.prob{background:var(--white);border-radius:6px;padding:32px 30px;border-left:4px solid var(--olive);box-shadow:0 10px 30px rgba(0,0,0,.05)}
+.prob h4{font-family:var(--body);font-size:15px;letter-spacing:1px;text-transform:uppercase;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px}
+.prob .row{margin:12px 0}
+.prob .row .lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--red);display:block;margin-bottom:3px}
+.prob .row p{font-size:14px;color:var(--text);line-height:1.6}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  nav ul{
+    position:fixed;top:79px;right:0;width:78%;max-width:320px;height:calc(100vh - 79px);
+    background:var(--ink);flex-direction:column;align-items:flex-start;gap:0;
+    padding:24px;transform:translateX(100%);transition:transform .35s;box-shadow:-10px 0 40px rgba(0,0,0,.3);
   }
-
-  .image-section img,
-  .image-section .text {
-    width: 100%;
-  }
-
-  .hero-content h1 {
-    font-size: 50px;
-  }
+  nav ul.open{transform:translateX(0)}
+  nav a{color:#eceae2;width:100%;padding:15px 8px;border-bottom:1px solid rgba(255,255,255,.08);font-size:15px}
+  nav a::after{display:none}
+  nav a.active{color:var(--red)}
+  .burger{display:flex}
+  .split,.support-grid,.proj-fanion,.contact-foot{grid-template-columns:1fr}
+  .pill-grid,.sol-grid,.proj-grid,.prob-grid,.founder-grid{grid-template-columns:1fr}
+  .aurelia{grid-template-columns:1fr;gap:30px}
+  .support-img{min-height:280px}
+  .hero-sphere{opacity:.4;right:-120px}
+}
+@media(max-width:520px){
+  .nav-wrap{padding:14px 18px}
+  .brand-txt b{font-size:18px;letter-spacing:3px}
+  .container{padding:0 18px}
+  .sec{padding:64px 0}
+  .support-box,.proj-fanion .pf-txt{padding:38px 26px}
 }
 </style>
-
 </head>
-
 <body>
 
-<nav>
-  <a href="#">Home</a>
-  <a href="#">About</a>
-  <a href="#">Projects</a>
-  <a href="#">Contact</a>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <h1>SPHERA</h1>
-    <p>Construim oportunități reale<br>Clădim comunități incluzive</p>
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="nav-wrap">
+    <a class="brand" onclick="go('despre')">
+      <img class="logo-img" src="assets/logo-dark.png" alt="Asociația SPHERA pentru Educație, Cultură și Dezvoltare Comunitară">
+    </a>
+    <nav>
+      <button class="burger" onclick="toggleMenu()" aria-label="Meniu"><span></span><span></span><span></span></button>
+      <ul id="menu">
+        <li><a data-pg="despre" onclick="go('despre')">Despre</a></li>
+        <li><a data-pg="misiune" onclick="go('misiune')">Misiune și Valori</a></li>
+        <li><a data-pg="solutii" onclick="go('solutii')">Soluții</a></li>
+        <li><a data-pg="proiecte" onclick="go('proiecte')">Proiecte în curs</a></li>
+        <li><a data-pg="alaturi" onclick="go('alaturi')">Fii alături de noi</a></li>
+        <li><a data-pg="contact" onclick="go('contact')">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
+
+<!-- ============ PAGINA: DESPRE ============ -->
+<div class="page active" id="despre">
+  <section class="hero">
+    <div class="hero-sphere"><img src="assets/sphere.png" alt="Sferă de cupru împletită — simbol SPHERA"></div>
+    <div class="hero-inner">
+      <span class="tag">Asociația SPHERA · 2026</span>
+      <h1><span>Construim.</span><span>Conectăm.</span><span>Creștem.</span></h1>
+      <p class="sub">Organizație neguvernamentală, independentă și apolitică, dedicată dezvoltării comunității prin educație, cultură, incluziune socială și promovarea valorilor umane.</p>
+      <div class="hero-cta">
+        <a class="btn btn-red" onclick="go('solutii')">Soluțiile noastre</a>
+        <a class="btn btn-ghost" onclick="go('alaturi')">Fii alături de noi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-paper">
+    <div class="container">
+      <div class="eyebrow">Cine suntem</div>
+      <h2 class="h-big">O echipă cu experiență<br>complementară.</h2>
+      <div class="split" style="margin-top:50px">
+        <div class="split-txt">
+          <p class="body">Asociația SPHERA pentru Educație, Cultură și Dezvoltare Comunitară este o organizație neguvernamentală, independentă și apolitică. Scopul nostru este dezvoltarea comunității prin educație, cultură, incluziune socială, economie socială și promovarea valorilor umane.</p>
+          <p class="body">Acționăm prin programe, proiecte și inițiative care susțin participarea activă, demnitatea și potențialul fiecărei persoane în parte, în contextul și în slujba comunității.</p>
+          <p class="body">Știm să îmbinăm rigoarea profesională cu implicarea umană autentică. Asociația este înființată în baza legislației române privind asociațiile și fundațiile și activează la nivel local, național și internațional.</p>
+        </div>
+        <div class="media-ph ph-copper"><span>Imagine — Sfera de cupru<br>(simbol SPHERA)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote-band">
+    <q>Omul devine ceea ce înțelege.</q>
+    <cite>— Constantin Noica</cite>
+  </div>
+
+  <section class="sec sec-sand">
+    <div class="container">
+      <div class="eyebrow">Povestea noastră</div>
+      <div class="split">
+        <div class="media-ph ph-ink"><span>Imagine — Povestea<br>SPHERA</span></div>
+        <div class="split-txt">
+          <p class="body">Asociația SPHERA s-a născut firesc, dintr-o prietenie veche și dintr-un parcurs profesional și de viață construit în medii exigente, unde performanța și responsabilitatea erau standarde asumate.</p>
+          <p class="body">Am învățat că performanța este importantă, dar ceea ce o face stabilă și durabilă sunt oamenii — valorile lor, echilibrul lor, viziunea și capacitatea de a construi împreună.</p>
+          <p class="body">Pentru noi, educația înseamnă <span class="red-text">formare autentică și autonomie</span>, cultura creează <span class="red-text">legături</span>, oferă <span class="red-text">sens</span> și consolidează <span class="red-text">identitatea</span>, iar dezvoltarea comunitară presupune <span class="red-text">participare, transformare și acțiune</span>.</p>
+          <p class="body">Nu privim comunitatea ca pe un beneficiar, ci ca pe un partener. SPHERA este o alegere pe termen lung. O cale. Construim cu grijă, cu dragoste, cu sens. <b>Autentic.</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-olive">
+    <div class="container" style="text-align:center">
+      <h2 class="h-mid" style="color:#fff;max-width:820px;margin:0 auto">Construim proiecte sustenabile, cu impact real și măsurabil în comunitate.</h2>
+      <div style="margin-top:34px"><a class="btn btn-red" onclick="go('proiecte')">Vezi proiectele pentru 2026</a></div>
+    </div>
+  </section>
 </div>
 
-<!-- INTRO -->
-<section>
-  <h2>O viziune construită cu sens</h2>
-  <p>
-    Educație, cultură și dezvoltare comunitară într-o formă autentică,
-    sustenabilă și profund umană.
-  </p>
-</section>
+<!-- ============ PAGINA: MISIUNE ȘI VALORI ============ -->
+<div class="page" id="misiune">
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow" style="color:#fff">Misiune și Valori</div>
+      <h1>Misiunea<br>noastră</h1>
+      <p>Construim sens. Conectăm oameni și idei. Creștem împreună.</p>
+    </div>
+  </section>
 
-<!-- IMAGE STORY -->
-<section class="image-section">
-  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-  <div class="text">
-    <h2>Educație</h2>
-    <p>Formare autentică și dezvoltare personală.</p>
-  </div>
-</section>
+  <section class="sec sec-paper">
+    <div class="container">
+      <p class="lead">Acționăm prin programe și inițiative care susțin participarea activă, demnitatea, potențialul, unicitatea, sensul și moștenirea fiecărui individ.</p>
+      <p class="body">Credem că dezvoltarea durabilă începe în primul rând cu respectul pentru fiecare persoană în parte și se construiește prin viziune comună în slujba fiecăruia și în slujba comunității, prin colaborare onestă și dorința de a trăi etic și autentic împreună.</p>
 
-<section class="image-section reverse">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-  <div class="text">
-    <h2>Cultură</h2>
-    <p>Construim identitate și sens.</p>
-  </div>
-</section>
+      <div class="pill-grid">
+        <div class="pill"><span class="num">01</span><h4>Educație</h4></div>
+        <div class="pill"><span class="num">02</span><h4>Cultură</h4></div>
+        <div class="pill"><span class="num">03</span><h4>Incluziune Socială</h4></div>
+        <div class="pill"><span class="num">04</span><h4>Economie Socială</h4></div>
+        <div class="pill"><span class="num">05</span><h4>Promovarea Valorilor Umane</h4></div>
+        <div class="pill"><span class="num">06</span><h4>Dezvoltare Comunitară</h4></div>
+      </div>
+    </div>
+  </section>
 
-<!-- DIRECTIONS -->
-<section>
-  <h2>Direcțiile noastre</h2>
-  <div class="grid">
-    <div class="card">Cultură și patrimoniu</div>
-    <div class="card">Educație și formare</div>
-    <div class="card">Incluziune socială</div>
-    <div class="card">Cercetare</div>
-    <div class="card">Antreprenoriat social</div>
-  </div>
-</section>
+  <section class="sec sec-ink">
+    <div class="container">
+      <div class="eyebrow">Valorile noastre</div>
+      <h2 class="h-big" style="color:#fff">A.U.R.E.L.I.A.</h2>
+      <p class="lead" style="color:#cfcdc4;margin-top:16px">Nu este doar un acronim. Este o moștenire și o responsabilitate.</p>
 
+      <div class="aurelia">
+        <ul class="aurelia-list">
+          <li><b>A</b>utenticitate</li>
+          <li><b>U</b>manitate</li>
+          <li><b>R</b>espect</li>
+          <li><b>E</b>xcelență</li>
+          <li><b>L</b>eadership prin exemplu</li>
+          <li><b>I</b>ncluziune</li>
+          <li><b>A</b>rmonie</li>
+        </ul>
+        <div>
+          <p class="body" style="color:#cfcdc4">Cele șapte valori care ne definesc reprezintă <span class="red-text">fundamentul moral</span> al Asociației SPHERA și cadrul în care construim fiecare program, fiecare decizie și fiecare parteneriat.</p>
+          <p class="body" style="color:#cfcdc4">Dincolo de formularea lor conceptuală, aceste valori își au rădăcina într-o experiență comună fondatorilor noștri. Fiecare dintre noi a fost modelat de prezența unei femei care a investit în noi, cu discreție și consecvență, cu răbdare și bunăvoință.</p>
+          <p class="body" style="color:#cfcdc4">Pentru noi, valorile nu sunt declarații abstracte. Sunt standarde de comportament, criterii de decizie și repere constante în tot ceea ce construim.</p>
+          <p class="body red-text" style="font-family:var(--display);font-style:italic;font-size:22px">Moștenirea ne obligă. Responsabilitatea ne definește.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-sand">
+    <div class="container">
+      <div class="eyebrow">Provocările comunității</div>
+      <h2 class="h-mid">Modele economice vs. impact social real</h2>
+      <div class="prob-grid">
+        <div class="prob">
+          <h4>Educație vs. Direcție</h4>
+          <div class="row"><span class="lbl">Problemă</span><p>Educația se concentrează adesea pe acumulare de informații, nu pe cultivarea dorinței intrinseci de cunoaștere, inovație, autenticitate și descoperirea vocației.</p></div>
+          <div class="row"><span class="lbl">Risc</span><p>Potențial uman neactivat, lipsă de sens profesional, dezorientare personală, societăți fragile fără scop pe termen lung.</p></div>
+        </div>
+        <div class="prob">
+          <h4>Patrimoniu moștenit vs. Economie culturală</h4>
+          <div class="row"><span class="lbl">Problemă</span><p>Continuitatea tradițiilor și a meșteșugurilor între generații este fragilă, iar participarea culturală devine adesea superficială, fără ancorare reală în valori și comunitate.</p></div>
+          <div class="row"><span class="lbl">Risc</span><p>Erodarea identității culturale și slăbirea coeziunii comunitare.</p></div>
+        </div>
+        <div class="prob">
+          <h4>Incluziune vs. Excluziune socială și profesională</h4>
+          <div class="row"><span class="lbl">Problemă</span><p>Persoanele vulnerabile cu capacitate limitată de muncă ar trebui sprijinite să o valorifice, nu descurajate prin pierderea beneficiilor sociale. Soluțiile trebuie construite în jurul oamenilor.</p></div>
+          <div class="row"><span class="lbl">Risc</span><p>Marginalizare cronică, dependență economică, sistem bugetar ineficient și fractură socială.</p></div>
+        </div>
+        <div class="prob">
+          <h4>Fragmentare vs. Implicare civică sănătoasă</h4>
+          <div class="row"><span class="lbl">Problemă</span><p>Spațiile de dialog și colaborare sunt limitate, iar oportunitățile de sprijin concret insuficiente.</p></div>
+          <div class="row"><span class="lbl">Risc</span><p>Scăderea încrederii între oameni, excluderea sau autoexcluderea, însingurarea, slăbirea capitalului social.</p></div>
+        </div>
+        <div class="prob" style="grid-column:1/-1">
+          <h4>Modele economice vs. Impact social real</h4>
+          <div class="row"><span class="lbl">Problemă</span><p>Economia locală nu integrează real și suficient responsabilitatea socială.</p></div>
+          <div class="row"><span class="lbl">Risc</span><p>Dezvoltare inegală, lipsă de coeziune socială reală și fragilitate comunitară pe termen lung.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PAGINA: SOLUȚII ============ -->
+<div class="page" id="solutii">
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow" style="color:#fff">5 direcții majore</div>
+      <h1>Soluțiile<br>SPHERA</h1>
+      <p>Construim răspunsuri concrete la provocările comunității, prin cinci direcții strategice de acțiune.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-paper">
+    <div class="container">
+      <div class="sol-grid">
+        <div class="sol-card feat">
+          <h3>Cultură și Patrimoniu</h3>
+          <p class="desc">Reactivăm patrimoniul cultural ca resursă vie de identitate și coeziune.</p>
+          <span class="lbl">Activități</span>
+          <ul>
+            <li>Documentare și cercetare culturală</li>
+            <li>Proiecte editoriale și multimedia</li>
+            <li>Evenimente culturale și expoziții</li>
+            <li>Ateliere de maiestrie și transfer intergenerațional</li>
+          </ul>
+        </div>
+        <div class="sol-card">
+          <h3>Educație și Formare Profesională</h3>
+          <p class="desc">Construim contexte de învățare care dezvoltă dorința de cunoaștere, activează potențialul și sprijină fiecare persoană să își descopere scopul și contribuția.</p>
+          <span class="lbl">Activități</span>
+          <ul>
+            <li>Cursuri și formare profesională</li>
+            <li>Mentorat și orientare vocațională</li>
+            <li>Educație non-formală</li>
+            <li>Consiliere și dezvoltare personală</li>
+            <li>Instruire practică la locul de muncă</li>
+          </ul>
+        </div>
+        <div class="sol-card">
+          <h3>Incluziune Socială și Integrare Profesională</h3>
+          <p class="desc">Creăm contexte reale de muncă și participare activă pentru persoane vulnerabile.</p>
+          <span class="lbl">Activități</span>
+          <ul>
+            <li>Integrare profesională</li>
+            <li>Sprijin pentru autonomie</li>
+            <li>Dezvoltarea unui restaurant incluziv</li>
+            <li>Parteneriate pentru angajare</li>
+          </ul>
+        </div>
+        <div class="sol-card">
+          <h3>Dezvoltare Comunitară</h3>
+          <p class="desc">Construim punți între oameni, idei și instituții pentru o comunitate mai unită.</p>
+          <span class="lbl">Activități</span>
+          <ul>
+            <li>Dialog intercultural</li>
+            <li>Campanii de conștientizare</li>
+            <li>Conferințe și dezbateri</li>
+            <li>Rețele de colaborare</li>
+          </ul>
+        </div>
+        <div class="sol-card">
+          <h3>Antreprenoriat Social și Economie Sustenabilă</h3>
+          <p class="desc">Dezvoltăm modele economice care îmbină performanța cu responsabilitatea socială.</p>
+          <span class="lbl">Activități</span>
+          <ul>
+            <li>Întreprinderi sociale</li>
+            <li>Parteneriate cu mediul privat</li>
+            <li>Activități economice cu scop social</li>
+            <li>Dezvoltare de produse și servicii sustenabile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PAGINA: PROIECTE ============ -->
+<div class="page" id="proiecte">
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow" style="color:#fff">Proiecte pentru 2026</div>
+      <h1>Proiecte<br>în curs</h1>
+      <p>Inițiative cu impact real, de la patrimoniu cultural la economie socială.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-paper">
+    <div class="container">
+      <div class="proj-fanion">
+        <div class="pf-txt">
+          <span class="badge">Proiect fanion</span>
+          <h3>Istoria Lutierilor din România</h3>
+          <p class="sub">Școala de la Reghin</p>
+          <p class="body" style="color:rgba(255,255,255,.9)">Proiect de patrimoniu cultural, dedicat documentării și promovării istoriei și artei lutieriei românești.</p>
+          <ul class="pf-list">
+            <li><b>1 Carte</b> <small>(monografie de patrimoniu și componentă multimedia)</small></li>
+            <li><b>1 Film documentar</b></li>
+            <li><b>2 Rezidențe artistice</b> <small>(3–5 zile · Câmpulung Moldovenesc, Reghin)</small></li>
+            <li><b>1 Lansare națională</b> <small>(București)</small></li>
+            <li><b>1 Lansare internațională</b> <small>(Cremona)</small></li>
+          </ul>
+          <p class="obj">Obiectiv: valorizarea meșteșugului de patrimoniu și excelență și integrarea sa într-un dialog cultural european contemporan.</p>
+        </div>
+        <div class="media-ph ph-copper" style="border-radius:0"><span>Imagine — Vioară /<br>atelier lutier</span></div>
+      </div>
+
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="pc-mark">2</div>
+          <div class="pc-logo">EXP — Editions</div>
+          <h4>Festival de muzică</h4>
+          <p>În areal aflat în patrimoniul UNESCO. Experiențe durabile pentru descoperirea patrimoniului și restaurarea identității.</p>
+        </div>
+        <div class="proj-card">
+          <div class="pc-mark">3</div>
+          <div class="pc-logo">AUTONOM.</div>
+          <h4>Integrare profesională</h4>
+          <p>Integrare profesională pentru persoane vulnerabile, prin parteneriate reale cu mediul privat.</p>
+        </div>
+        <div class="proj-card">
+          <div class="pc-mark">4</div>
+          <div class="pc-logo">SE POATE BISTRO</div>
+          <h4>Economie socială</h4>
+          <p>Unim performanța cu responsabilitatea socială, generând parteneriate și facilitând locuri de muncă.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PAGINA: FII ALĂTURI DE NOI ============ -->
+<div class="page" id="alaturi">
+  <section class="page-hero ink">
+    <div class="container">
+      <div class="eyebrow" style="color:var(--red)">Susține viziunea</div>
+      <h1>Fii alături<br>de noi</h1>
+      <p>Implicarea ta ne confirmă că avem viziune și obiective comune.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-paper" style="padding:0">
+    <div class="support-grid">
+      <div class="media-ph ph-olive support-img"><span>Imagine — Comunitate /<br>oameni împreună</span></div>
+      <div class="support-box">
+        <div class="big-pct">3,5%</div>
+        <h3>Redirecționează din impozitul pe venit</h3>
+        <p class="note">Poți susține proiectele Asociației SPHERA fără niciun cost pentru tine, redirecționând 3,5% din impozitul pe venit prin Formularul 230.</p>
+
+        <div class="divider-red"></div>
+
+        <div class="fld"><div class="k">Beneficiar</div><div class="v">Asociația SPHERA pentru Educație, Cultură și Dezvoltare Comunitară</div></div>
+        <div class="fld"><div class="k">CUI</div><div class="v">54357747</div></div>
+        <div class="fld"><div class="k">IBAN</div><div class="v">XXXXXXXXXXXXX</div></div>
+
+        <div class="divider-red"></div>
+
+        <div class="fld"><div class="k">Formular 230 — completează online</div></div>
+        <a class="btn btn-red" href="https://www.anaf.ro/declaratii/d230/" target="_blank" rel="noopener" style="margin-top:8px">Completează Formularul 230</a>
+
+        <p class="note">Sau contactează-ne să ne spui ideea sau propunerea ta de suport la <a href="mailto:gabriela@spheraprojects.com" style="color:#fff;text-decoration:underline">gabriela@spheraprojects.com</a></p>
+        <p class="thanks">Mulțumim! Recunoscători!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-olive">
+    <div class="container" style="text-align:center">
+      <h2 class="h-mid" style="color:#fff">Extraordinari împreună!</h2>
+      <p class="lead" style="color:rgba(255,255,255,.9);margin:18px auto 0">Orice formă de implicare contează. Hai să construim împreună o comunitate mai puternică.</p>
+      <div style="margin-top:30px"><a class="btn btn-dark" onclick="go('contact')">Contactează-ne</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PAGINA: CONTACT ============ -->
+<div class="page" id="contact">
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow" style="color:#fff">Ia legătura cu noi</div>
+      <h1>Contact</h1>
+      <p>Ne inspiră întâlnirile și parteneriatele de substanță. Hai să vorbim.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-paper">
+    <div class="container">
+      <div class="contact-foot">
+        <div>
+          <div class="eyebrow">Unde ne găsești</div>
+          <h2 class="h-mid">Strada Popa Nan<br>Nr. 108, București</h2>
+          <div class="info-row"><div class="ic">✉</div><div><a href="mailto:contact@spheraprojects.com">contact@spheraprojects.com</a></div></div>
+          <div class="info-row"><div class="ic">☎</div><div>+40 752 175 535</div></div>
+          <div class="info-row"><div class="ic">⌂</div><div><a href="https://www.spheraprojects.com" target="_blank" rel="noopener">www.spheraprojects.com</a></div></div>
+        </div>
+        <div class="media-ph ph-olive" style="min-height:320px"><span>Hartă — Strada Popa Nan<br>Nr. 108, București</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  © 2026 SPHERA
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" onclick="go('despre')">
+          <img class="logo-img logo-foot" src="assets/logo-white.png" alt="Asociația SPHERA">
+        </a>
+        <p>Construim. Conectăm. Creștem. O organizație dedicată dezvoltării comunității prin educație, cultură și valori umane autentice.</p>
+        <p class="foot-tagline">Extraordinari împreună!</p>
+      </div>
+      <div class="foot-nav">
+        <b>Navigare</b>
+        <a onclick="go('despre')">Despre</a>
+        <a onclick="go('misiune')">Misiune și Valori</a>
+        <a onclick="go('solutii')">Soluții</a>
+        <a onclick="go('proiecte')">Proiecte în curs</a>
+        <a onclick="go('alaturi')">Fii alături de noi</a>
+        <a onclick="go('contact')">Contact</a>
+      </div>
+      <div class="foot-nav">
+        <b>Contact</b>
+        <a href="mailto:contact@spheraprojects.com">contact@spheraprojects.com</a>
+        <a href="https://www.spheraprojects.com" target="_blank" rel="noopener">www.spheraprojects.com</a>
+        <span style="color:#9a988e;font-size:14px">Strada Popa Nan Nr. 108<br>București, România</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Asociația SPHERA pentru Educație, Cultură și Dezvoltare Comunitară. CUI 54357747.</span>
+      <span>Organizație neguvernamentală, independentă și apolitică.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-  sections.forEach(section => {
-    if (section.getBoundingClientRect().top < window.innerHeight - 100) {
-      section.classList.add("visible");
-    }
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  var el=document.getElementById(id);
+  if(el)el.classList.add('active');
+  document.querySelectorAll('nav a[data-pg]').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('data-pg')===id);
   });
-});
+  document.getElementById('menu').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('open');
+}
 </script>
-
 </body>
 </html>
